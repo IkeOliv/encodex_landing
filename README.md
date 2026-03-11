@@ -1,4 +1,4 @@
-# SICOV Landing Page
+# encodex Landing Page
 
 Landing page de SICOV construida con **Vue 3**, **Composition API**, **Tailwind CSS** y **Pinia**.
 
