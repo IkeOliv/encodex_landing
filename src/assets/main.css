@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-black font-body antialiased;
+    background-image:
+      radial-gradient(
+        ellipse at 20% 50%,
+        rgba(99, 102, 241, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at 80% 20%,
+        rgba(79, 70, 229, 0.05) 0%,
+        transparent 50%
+      );
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-gray-100 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white font-display font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Outline button */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 border border-primary-500/50 text-primary-400 hover:bg-primary-500/10 font-display font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5;
+  }
+
+  /* Section title */
+  .section-title {
+    @apply font-display text-4xl md:text-5xl font-bold leading-tight;
+  }
+
+  /* Section subtitle */
+  .section-subtitle {
+    @apply text-gray-500 text-lg font-body leading-relaxed;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-gray-600 hover:text-primary-400 font-body font-medium transition-colors duration-200 relative;
+  }
+
+  /* Form Input */
+  .form-input {
+    @apply w-full bg-black/5 border border-black/10 rounded-xl px-4 py-3
+        text-white placeholder-gray-600 font-body text-sm
+        focus:outline-none focus:border-primary-500/50 focus:bg-black/10
+        transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-600 rounded-full;
+  }
+}
