@@ -169,7 +169,7 @@ import { ref, nextTick, onMounted } from 'vue'
 // ============================================================
 // CONFIGURACIÓN
 // ============================================================
-const N8N_WEBHOOK_URL = 'http://34.171.25.139:5678/webhook/a29f5d15-71ea-4fbe-83bb-bfbec2dc73b2/chat'
+const N8N_WEBHOOK_URL = 'https://n8n.encodex.com.mx/webhook/a29f5d15-71ea-4fbe-83bb-bfbec2dc73b2/chat'
 const SESSION_STORAGE_KEY = 'encodex_chat_session'
 // ============================================================
 

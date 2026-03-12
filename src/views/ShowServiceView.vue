@@ -125,7 +125,6 @@
                             <h3 class="font-display text-xl font-bold mt-4 mb-2">¡Mensaje enviado!</h3>
                             <p class="text-gray-400 text-sm font-body">Nos pondremos en contacto contigo a la brevedad.
                             </p>
-                            <button @click="formSuccess = false" class="btn-outline mt-6 text-sm">Enviar otro</button>
                         </div>
                     </Transition>
 
@@ -192,10 +191,12 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
+import { useSmtpStore } from '../stores/smtp'
 
 const vueRoute = useRoute()
+const smtpStore = useSmtpStore();
 
 // Datos de servicios
 const services = [
@@ -337,8 +338,8 @@ const service = services.find(s => s.id == vueRoute.params.id)
 
 // Formulario 
 const form = reactive({ name: '', phone: '', email: '', reason: '' })
-const isLoading = ref(false)
-const formSuccess = ref(false)
+const isLoading = computed(() => smtpStore.isLoading)
+const formSuccess = computed(() => smtpStore.formSuccess)
 const formError = ref('')
 
 const handleSubmit = async () => {
@@ -348,19 +349,14 @@ const handleSubmit = async () => {
         formError.value = 'Por favor completa todos los campos.'
         return
     }
-
-    isLoading.value = true
     try {
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        console.log('Formulario enviado:', { service: service?.title, ...form })
-        formSuccess.value = true
-        Object.assign(form, { name: '', phone: '', email: '', reason: '' })
+        await smtpStore.sendSmtp({ service: service?.title, ...form })
+        //Object.assign(form, { name: '', phone: '', email: '', reason: '' })
     } catch {
         formError.value = 'Ocurrió un error. Intenta de nuevo.'
-    } finally {
-        isLoading.value = false
     }
 }
+
 </script>
 
 <style scoped>
