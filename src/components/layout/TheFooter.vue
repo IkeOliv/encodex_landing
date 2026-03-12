@@ -33,7 +33,7 @@
       </div>
 
       <!-- Nav links -->
-      <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4 pt-4 border-t border-white/5">
+      <div v-if="props.isNav" class="flex flex-wrap justify-center gap-x-8 gap-y-2 mt-4 pt-4 border-t border-white/5">
         <a
           v-for="link in footerLinks"
           :key="link.href"
@@ -50,6 +50,13 @@
 <script setup>
 import { computed, h } from 'vue'
 import Encodex from '../ui/encodex.vue'
+
+const props = defineProps({
+  isNav:{
+    default: true,
+    type:  Boolean,
+  }
+})
 
 const currentYear = computed(() => new Date().getFullYear())
 

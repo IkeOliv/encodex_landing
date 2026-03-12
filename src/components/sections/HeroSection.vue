@@ -24,12 +24,12 @@
 
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" style="animation-delay: 300ms">
-        <a href="#contacto" class="btn-primary text-base px-10 py-3">
+        <p class="btn-primary text-base px-10 py-3" @click="vueRouter.push({name: 'modulos'})">
           Cotizar
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
+        </p>
         <a href="#servicios" class="btn-outline text-base px-10 py-3">
           Ver servicios
         </a>
@@ -53,7 +53,10 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import Encodex from '../ui/encodex.vue';
+
+const vueRouter = useRouter();
 
 const stats = [
   { value: '75', label: 'Clientes' },
